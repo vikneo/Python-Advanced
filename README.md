@@ -19,6 +19,8 @@
 * База данных часть 3 [module_16](./module_16_db3/homework/README.md)
 * REST API [module_17](./module_17_rest_api/homework/README.md)
 * Документирование. Стандарты API [module_18](./module_18_documentation/homework/README.md)
+...
+* Celery. Очереди задач [module_22](./module_22_celery/README.md)
 
 ## Settings project
 
