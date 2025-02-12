@@ -1,0 +1,16 @@
+.flash {
+    width: 50%;
+    padding: 10px 0 10px 10px;
+}
+
+.error {
+    background-color: #f61f496e;
+}
+
+.success {
+    background-color: #27ae606e;
+}
+
+.margin-r, .btn {
+    margin-right: 15px;
+}

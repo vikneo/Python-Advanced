@@ -1,0 +1,22 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="container flex title-center direction-column">
+        <h1>{{ title }}</h1>
+        <div class="list-group col-lg-7">
+            <a href="" class="list-group-item list-group-item-action" aria-current="true">
+                Список всех книг
+            </a>
+            <a href=""
+               class="list-group-item list-group-item-action">
+                Список читателей
+            </a>
+            <a href="" class="list-group-item list-group-item-action">Список должников</a>
+            <a href="" class="list-group-item list-group-item-action">Выдать книгу</a>
+            <a href=""
+               class="list-group-item list-group-item-action">
+                Сдать книгу в библиотеку
+            </a>
+        </div>
+    </div>
+{% endblock %}
