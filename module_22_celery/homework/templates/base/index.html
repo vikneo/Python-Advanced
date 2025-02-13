@@ -4,18 +4,14 @@
     <div class="container flex title-center direction-column">
         <h1>{{ title }}</h1>
         <div class="list-group col-lg-7">
-            <a href="" class="list-group-item list-group-item-action" aria-current="true">
-                Список всех книг
-            </a>
-            <a href=""
+            {% if group_id %}
+                {{ group_id }}
+            <a href="{{ url_for('get_status_task_id', group_id = group_id) }}" class="list-group-item list-group-item-action">Статус задачи</a>
+            {% endif %}
+            <a href="{{ url_for('subscription_to_newsletter') }}" class="list-group-item list-group-item-action">Подписаться на рассылку</a>
+            <a href="{{ url_for('unsubscription_from_newsletter') }}"
                class="list-group-item list-group-item-action">
-                Список читателей
-            </a>
-            <a href="" class="list-group-item list-group-item-action">Список должников</a>
-            <a href="" class="list-group-item list-group-item-action">Выдать книгу</a>
-            <a href=""
-               class="list-group-item list-group-item-action">
-                Сдать книгу в библиотеку
+                Отписаться от рассылки
             </a>
         </div>
     </div>
