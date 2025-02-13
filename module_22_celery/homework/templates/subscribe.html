@@ -1,0 +1,31 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="form-style-10">
+        <h1>{{ title }}</h1>
+        <form method="post" enctype="multipart/form-data">
+            {{ form.hidden_tag() }}
+            {% for field in form if field.name not in ['csrf_token', ] -%}
+            <div class="mb-3">
+                {{ field.label(class="form-label") }}
+                {% if field.errors %}
+                {{ field(class=invalid) }}
+                <span>
+                    {% for e in field.errors %}
+                    {{ e }}
+                    {% endfor %}
+                </span>
+                {% endif %}
+                {{ field(class="form-control") }}
+            </div>
+            {% endfor %}
+            {% if request.path == url_for('subscription_to_newsletter') %}
+            <button type="submit" class="btn btn-primary">Подписаться</button>
+            {% else %}
+            <button type="submit" class="btn btn-primary">Отписаться</button>
+            {% endif %}
+        </form>
+    </div>
+</div>
+{% endblock %}
