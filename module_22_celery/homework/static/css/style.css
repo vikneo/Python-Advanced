@@ -1,3 +1,49 @@
+.flex {
+    display: flex;
+}
+
+.title-center {
+    justify-content: center;
+}
+
+.between {
+    justify-content: space-between;
+}
+
+.direction-column {
+    flex-direction: column;
+}
+
+.year-head {
+    width: 40%;
+    justify-content: flex-end;
+}
+
+.name-head {
+    padding-right: 50px;
+    padding-left: 10px;
+    font-weight: 800;
+}
+
+.form-label {
+    margin-bottom: .5rem;
+}
+
+label {
+    display: inline-block;
+}
+
+.form-style-10, .form-control {
+    width: 50%;
+}
+
+.form-control .invalid {
+    background: rgb(240, 72, 72);
+}
+.display-none {
+    display: none;
+}
+
 .flash {
     width: 50%;
     padding: 10px 0 10px 10px;
@@ -9,6 +55,10 @@
 
 .success {
     background-color: #27ae606e;
+}
+
+.warning {
+    background-color: rgb(248, 232, 8);
 }
 
 .margin-r, .btn {

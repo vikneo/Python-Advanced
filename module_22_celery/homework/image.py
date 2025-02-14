@@ -2,6 +2,7 @@
 Здесь происходит логика обработки изображения
 """
 
+import re
 from typing import Optional
 
 from PIL import Image, ImageFilter
@@ -13,7 +14,8 @@ def blur_image(src_filename: str, dst_filename: Optional[str] = None):
     Применяет размытие по Гауссу со значением 5.
     """
     if not dst_filename:
-        dst_filename = f'blur_{src_filename}'
+        filename = re.findall(r'[\w.\w\s]+', src_filename)[-1]
+        dst_filename = f'blur_{filename}'
 
     with Image.open(src_filename) as img:
         img.load()

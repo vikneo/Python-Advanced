@@ -6,7 +6,7 @@ from email.mime.multipart import MIMEMultipart
 from config import SMTP_HOST, SMTP_PORT, SMTP_PASSWORD, SMTP_USER
 
 
-def send_email(order_id: str, receiver: str, filename: str):
+def send_email(order_id: str, receiver: str, filename: str, _text: str):
     """
     Отправляет пользователю `receiver` письмо по заказу `order_id` с приложенным файлом `filename`
 
@@ -17,20 +17,23 @@ def send_email(order_id: str, receiver: str, filename: str):
         server.login(SMTP_USER, SMTP_PASSWORD)
 
         email = MIMEMultipart()
-        email['Subject'] = f'Изображения. Заказ №{order_id}'
+        email['Subject'] = f'{order_id}'
         email['From'] = SMTP_USER
         email['To'] = receiver
 
-        with open(filename, 'rb') as attachment:
-            part = MIMEBase('application', 'octet-stream')
-            part.set_payload(attachment.read())
+        if filename:
+            with open(filename, 'rb') as attachment:
+                part = MIMEBase('application', 'octet-stream')
+                part.set_payload(attachment.read())
 
-        encoders.encode_base64(part)
-        part.add_header(
-            'Content-Disposition',
-            f'attachment; filename={filename}'
-        )
-        email.attach(part)
-        text = email.as_string()
+            encoders.encode_base64(part)
+            part.add_header(
+                'Content-Disposition',
+                f'attachment; filename={filename}'
+            )
+            email.attach(part)
+            text = email.as_string()
+        else:
+            text = _text
 
         server.sendmail(SMTP_USER, receiver, text)

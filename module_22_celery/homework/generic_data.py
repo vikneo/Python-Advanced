@@ -66,10 +66,6 @@ class GenerateCSVFile:
         phone = [str(random.randint(0, 9)) for _ in range(9)]
         return ''.join(phone)
 
-    def __random_num_int_float(self) -> float:
-        num_float = str(round(random.uniform(3, 6), 2))
-        return num_float
-
     def __generate_email(self, ful_name: str) -> str:
         """
         Функция генерации email адреса

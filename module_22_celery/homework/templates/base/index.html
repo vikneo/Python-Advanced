@@ -6,7 +6,7 @@
         <div class="list-group col-lg-7">
             {% if group_id %}
                 {{ group_id }}
-            <a href="{{ url_for('get_status_task_id', group_id = group_id) }}" class="list-group-item list-group-item-action">Статус задачи</a>
+            <a href="#" class="list-group-item list-group-item-action">Статус задачи</a>
             {% endif %}
             <a href="{{ url_for('subscription_to_newsletter') }}" class="list-group-item list-group-item-action">Подписаться на рассылку</a>
             <a href="{{ url_for('unsubscription_from_newsletter') }}"

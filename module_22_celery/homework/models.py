@@ -11,7 +11,8 @@ from sqlalchemy import (
     Integer,
     String, 
     Boolean,
-    select
+    select,
+    update
     )
 from sqlalchemy.orm import (
     DeclarativeBase,
@@ -51,7 +52,7 @@ class User(Base):
     
     @classmethod
     def get_user_by_email(cls, email: str):
-        query = select(cls).filter(cls.email.icontains == email)
+        query = select(cls).filter(cls.email.icontains(email))
         with Session() as session:
             user = session.execute(query).scalar()
             return user
@@ -83,6 +84,13 @@ class Profile(Base):
         with Session() as session:
             users: Sequence[Profile] = session.execute(query).scalars().unique().all()
             return users
+    
+    @classmethod
+    def subscribes(cls,user_id: int, data: bool) -> None:
+        query = update(cls).values(subscribe = data).where(cls.user_id == user_id)
+        with Session() as session:
+            session.execute(query)
+            session.commit()
 
 
 class File(Base):

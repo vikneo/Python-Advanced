@@ -15,7 +15,11 @@
 
 {% include 'base/header.html' %}
 {% for cat, msg in get_flashed_messages(True) %}
-<div class=" container flash {{ cat }}">{{ msg }}</div>
+<div class=" container flash {{ cat }}">{{ msg }}
+    {% if target %}
+    &quot;<a href="#">личном кабинете</a>&quot;
+    {% endif %}
+</div>
 {% endfor %}
 
 
