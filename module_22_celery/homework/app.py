@@ -118,7 +118,7 @@ def get_status_task_id():
     passwd = 'passworf' # пароль сгенерированный от безопастности для сторонних приложений почтового сервиса
     email['Subject'] = 'Test email'
     email['From'] = 'email' # адрес почты
-    email['To'] = 'vm-viktor@mail.ru'
+    email['To'] = 'addresat'
 
     email.attach(MIMEText("Thank you", 'plain'))
     # email.attach(MIMEImage(file("google.jpg").read()))
