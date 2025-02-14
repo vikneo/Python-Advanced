@@ -115,9 +115,9 @@ def get_status_task_id():
 
     email = MIMEMultipart()
 
-    passwd = 'SVnD9RHLnnLBQYZ3Ww0M'
+    passwd = 'passworf' # пароль сгенерированный от безопастности для сторонних приложений почтового сервиса
     email['Subject'] = 'Test email'
-    email['From'] = 'v.martynov@rineco.ru'
+    email['From'] = 'email' # адрес почты
     email['To'] = 'vm-viktor@mail.ru'
 
     email.attach(MIMEText("Thank you", 'plain'))
