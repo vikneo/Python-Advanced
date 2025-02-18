@@ -1,6 +1,7 @@
 import smtplib
 from email import encoders
 from email.mime.base import MIMEBase
+from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 from config import SMTP_HOST, SMTP_PORT, SMTP_PASSWORD, SMTP_USER
@@ -32,8 +33,7 @@ def send_email(order_id: str, receiver: str, filename: str, _text: str):
                 f'attachment; filename={filename}'
             )
             email.attach(part)
-            text = email.as_string()
-        else:
-            text = _text
+        email.attach(MIMEText(_text, 'plain'))
+        text = email.as_string()
 
         server.sendmail(SMTP_USER, receiver, text)

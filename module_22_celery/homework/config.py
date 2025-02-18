@@ -7,6 +7,7 @@
 - Google: https://support.google.com/mail/answer/7126229?visit_id=638290915972666565-928115075
 """
 import os
+from dotenv import load_dotenv
 
 from flask import Flask, flash
 from sqlalchemy import create_engine
@@ -17,6 +18,8 @@ from werkzeug.utils import secure_filename
 # --------------------------------------------------------------------------------------
 # Session service & paths for data
 # --------------------------------------------------------------------------------------
+
+load_dotenv()
 
 BASE_DIR = os.path.dirname(__file__)
 PATH_TO_DB = os.path.join(BASE_DIR, 'mod_22_celery.db')
@@ -46,10 +49,10 @@ app.config['UPLOAD_FOLDER_IMAGES'] = PATH_TO_FILE_IMAGES
 # --------------------------------------------------------------------------------------
 # https://yandex.ru/support/mail/mail-clients/others.html
 
-SMTP_USER = "ПОЧТА ОТПРАВИТЕЛЯ"
-SMTP_HOST = "smtp.yandex.com"
-SMTP_PASSWORD = "ПАРОЛЬ ОТ ПОЧТЫ ОТПРАВИТЕЛЯ / СПЕЦИАЛЬНЫЙ ТОКЕН ПРИЛОЖЕНИЯ"
-SMTP_PORT = 587
+SMTP_USER = os.getenv('SMTP_USER')
+SMTP_HOST = os.getenv('SMTP_HOST')
+SMTP_PASSWORD = os.getenv('SMTP_PASSWORD')
+SMTP_PORT = os.getenv('SMTP_PORT')
 
 
 # --------------------------------------------------------------------------------------
