@@ -1,0 +1,17 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1>{{ title }}</h1>
+        <table class="table">
+            <tbody>
+                {% for student in students %}
+            <tr>
+                <th scope="row">{{ loop.index }}</th>
+                <td>ФИО студента: {{ student[0].students.name }} {{ student[0].students.surname }}</td>
+                <td>Прочитал книг: {{ student[1] }} шт.</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

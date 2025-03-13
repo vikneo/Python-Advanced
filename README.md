@@ -19,8 +19,11 @@
 * База данных часть 3 [module_16](./module_16_db3/homework/README.md)
 * REST API [module_17](./module_17_rest_api/homework/README.md)
 * Документирование. Стандарты API [module_18](./module_18_documentation/homework/README.md)
-...
-* Celery. Очереди задач [module_22](./module_22_celery/README.md)
+* ...
+* ORM SQLAlchemy. Часть 2 [module_20](./module_21_orm_2/README.md)
+* Очереди задач [module 22](./module_22_celery/README.md)
+* CGI server [module 23](./module_23_cgi_server/README.md)
+* Основы дебаггинга и профилирования. Часть 2 [module_24](./module_24_debugging_2/README.md)
 
 ## Settings project
 
@@ -52,6 +55,9 @@ poetry install
 ```
 
 <hr>
+
+## [Docker](./module_09_docker/Docker.md) контейнер
+
 
 ## Cheat sheets
 

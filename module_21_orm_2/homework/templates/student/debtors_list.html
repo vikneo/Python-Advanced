@@ -1,0 +1,57 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1>Читатели библиотеки</h1>
+        {% if students %}
+        {% for student in students %}
+            <div class="card">
+                <div class="card-header flex" style="justify-content: space-between">
+                    <div>Имя:
+                        <string class="name-head">{{ student.student.name }}</string>
+                    </div>
+                    <div>Фамилия:
+                        <string class="name-head">{{ student.student.surname }}</string>
+                    </div>
+                    <div>Почта:
+                        <string class="name-head">{{ student.student.email }}</string>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Название книги: {{ student.book.title }}</h5>
+                    <div>Номер телефона:
+                        <string class="name-head">{{ student.student.phone }}</string>
+                    </div>
+                    <div>Средний балл:
+                        {% if student.student.average_score %}
+                            <string class="name-head">
+                                {{ student.student.average_score }}
+                            </string>
+                        {% else %}
+                            <string class="name-head">
+                                Оценок пока нет
+                            </string>
+                        {% endif %}
+                    </div>
+                    {% if student.student.scholarship %}
+                        Стипендия:
+                        <string class="name-head">Получает</string>
+                    {% else %}
+                        Стипендия:
+                        <string class="name-head">Не получает</string>
+                    {% endif %}
+                    <div>Держит книгу на руках:
+                        {% if student.count_day == 0 %}
+                            <string class="name-head">сегодня</string>
+                        {% else %}
+                            <string class="name-head">{{ student.count_day }} дн.</string>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        {% else %}
+        <h4>Данные о должниках отсутствуют</h4>
+        {% endif %}
+    </div>
+{% endblock %}

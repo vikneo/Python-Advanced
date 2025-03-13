@@ -1,0 +1,47 @@
+<div class="form-style-10">
+    <h1>{{ title }}</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        {% for field in form if field.name not in ['csrf_token', ] -%}
+            {% if request.path != url_for('get_return_book') %}
+                {% if field.name != 'date_of_return' %}
+                    {{ field(class="display-none") }}
+                    <p>{{ field.label(class="form-label") }}
+                        {% if field.errors %}
+                            {{ field(class=invalid) }}
+                            <span>
+                        {% for e in field.errors %}
+                            {{ e }}
+                        {% endfor %}
+                    </span>
+                        {% endif %}
+                        {% if field.name == 'scholarship' %}
+                            {{ field(class="form-check-label") }}
+                        {% else %}
+                            {{ field(class="form-control") }}
+                        {% endif %}
+                    </p>
+                {% endif %}
+            {% else %}
+                <p>{{ field.label(class="form-label") }}
+                    {% if field.errors %}
+                        {{ field(class=invalid) }}
+                        <span>
+                        {% for e in field.errors %}
+                            {{ e }}
+                        {% endfor %}
+                    </span>
+                    {% endif %}
+                    {% if field.name == 'scholarship' %}
+                        {{ field(class="form-check-label") }}
+                    {% else %}
+                        {{ field(class="form-control") }}
+                    {% endif %}
+                </p>
+            {% endif %}
+        {% endfor %}
+        <div class="mb-3">
+        </div>
+        <button type="submit" class="btn btn-primary">Добавить</button>
+    </form>
+</div>

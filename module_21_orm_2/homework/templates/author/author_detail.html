@@ -1,0 +1,29 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1>{{ fifle }}</h1>
+        {% if author %}
+            <div class="card">
+                <div class="card-header flex" style="justify-content: space-between">
+                    <div>Автор: <string class="name-head">{{ author.name }} {{ author.surname }}</string></div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Остаток книг в библиотеке:
+                    <string class="name-head">
+                        {{ count }} шт.
+                    </string>
+                </div>
+            </div>
+            Список книг:
+            {% for book in author.books %} 
+            <p>
+                Название: <u>{{ book.title }}</u> - 
+                Количество: <u>{{ book.count }}</u> шт.
+            </p>
+            {% endfor %}
+        {% else %}
+        <h2>Книг данного автора в библиотеке нет</h2>
+        {% endif %}
+    </div>
+{% endblock %}

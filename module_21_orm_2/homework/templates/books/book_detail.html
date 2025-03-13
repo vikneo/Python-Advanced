@@ -1,0 +1,33 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1>{{ book.title }}</h1>
+        <div class="card">
+            <div class="card-header flex" style="justify-content: space-between">
+                <div>Название:
+                    <string class="name-head">{{ book.title }}</string>
+                </div>
+                <div>Год издания:
+                    <string class="name-head">{{ book.release_date.strftime('%Y') }} г.</string>
+                </div>
+                <div>Количество:
+                    <string class="name-head">{{ book.count }}</string>
+                </div>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Автор:
+                    <string class="name-head">
+                        <a href="{{ url_for('get_count_books_by_author_id', author_id=book.author.id ) }}">
+                            {{ book.author.name }} {{ book.author.surname }}
+                        </a>
+                    </string>
+                </h5>
+                <p class="card-text">С вспомогательным текстом ниже в качестве естественного перехода к
+                    дополнительному контенту.</p>
+                <a href="{{ url_for('get_take_book', book_id=book.id) }}" class="btn btn-primary">Выдать книгу</a>
+                <a href="#" class="btn btn-success">Сдать книгу</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

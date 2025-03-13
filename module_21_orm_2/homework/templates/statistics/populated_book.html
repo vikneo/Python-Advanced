@@ -1,0 +1,20 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1>{{ title }}</h1>
+        {% if populated %}
+        <table class="table">
+            <tbody>
+            <tr>
+                <th scope="row">2</th>
+                <td>Среди студентов с балом выше 4:</td>
+                <td>Книга: {{ populated.book.title }} - {{ populated.book.author.name }} {{ populated.book.author.surname }}</td>
+                <td>Читали: {{ populated.max_count }} раз(а)</td>
+            </tr>
+        </table>
+        {% else %}
+            <h4>Данных пока нет</h4>
+        {% endif %}
+    </div>
+{% endblock %}

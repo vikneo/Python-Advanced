@@ -1,0 +1,458 @@
+{
+  "swagger": "2.0",
+  "basePath": "/",
+  "definitions": {
+    "Author": {
+      "properties": {
+        "id": {
+          "readOnly": true,
+          "type": "integer"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "middle_name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "first_name",
+        "last_name",
+        "middle_name"
+      ],
+      "type": "object"
+    },
+    "AuthorEdit": {
+      "properties": {
+        "id": {
+          "readOnly": true,
+          "type": "integer"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "middle_name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "first_name",
+        "last_name",
+        "middle_name"
+      ],
+      "type": "object"
+    },
+    "Book": {
+      "properties": {
+        "id": {
+          "readOnly": true,
+          "type": "integer"
+        },
+        "author": {
+          "type": "object",
+          "required": true
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "author",
+        "title"
+      ],
+      "type": "object"
+    },
+    "BookEdit": {
+      "properties": {
+        "id": {
+          "readOnly": true,
+          "type": "integer"
+        },
+        "author": {
+          "type": "object",
+          "required": true
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "author",
+        "title"
+      ],
+      "type": "object"
+    }
+  },
+  "info": {
+    "title": "Library",
+    "version": "1.0.0"
+  },
+  "produces": [
+    "application/json"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "tags": [
+    {
+      "name": "authors",
+      "description": "API for Authors"
+    },
+    {
+      "name": "books",
+      "description": "API for Books"
+    }
+  ],
+  "responses": {
+    "ParseError": {
+      "description": "When a mask can't be parsed"
+    },
+    "MaskError": {
+      "description": "When any error occurs on mask"
+    }
+  },
+  "paths": {
+    "/api/authors": {
+      "post": {
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Parameter new author",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Author"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status OK"
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "422": {
+            "description": "Validation exception"
+          }
+        },
+        "operationId": "post_author_create",
+        "tags": [
+          "authors"
+        ],
+        "summary": "Create a new author"
+      },
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Status OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Author"
+              }
+            }
+          },
+          "404": {
+            "description": "Page not found"
+          }
+        },
+        "operationId": "get_author_list",
+        "tags": [
+          "authors"
+        ],
+        "summary": "Get full list authors"
+      }
+    },
+    "/api/authors/{author_id}": {
+      "get": {
+        "tags": [
+          "authors"
+        ],
+        "summary": "Find author by ID",
+        "responses": {
+          "200": {
+            "description": "Status OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/AuthorEdit"
+              }
+            }
+          },
+          "404": {
+            "description": "Page nor found"
+          }
+        },
+        "operationId": "get_author_id"
+      },
+      "patch": {
+        "tags": [
+          "authors"
+        ],
+        "summary": "Replace partial information in the author",
+        "parameters": [
+          {
+            "name": "author_id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "Replace partial information in the author",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/AuthorEdit"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status OK"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Author not found"
+          }
+        },
+        "operationId": "patch_author_edit"
+      },
+      "delete": {
+        "tags": [
+          "authors"
+        ],
+        "summary": "Delete a author",
+        "parameters": [
+          {
+            "name": "author_id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status OK"
+          },
+          "400": {
+            "description": "Invalid author ID value"
+          }
+        },
+        "operationId": "delete_author"
+      },
+      "put": {
+        "tags": [
+          "authors"
+        ],
+        "summary": "Update author by ID",
+        "parameters": [
+          {
+            "name": "author_id",
+            "in": "path",
+            "description": "Author that need to be replace",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "Replace the full information in the author",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/AuthorEdit"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status OK"
+          },
+          "400": {
+            "description": "Author not found"
+          }
+        },
+        "operationId": "put_author_edit"
+      }
+    },
+    "/api/books": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Status OK",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Book"
+              }
+            }
+          },
+          "404": {
+            "description": "Page not found"
+          }
+        },
+        "operationId": "get_book_list",
+        "tags": [
+          "books"
+        ],
+        "summary": "Get full list books"
+      },
+      "post": {
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Parameter new book",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Book"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Book create",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Book"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          },
+          "404": {
+            "description": "Validation exception"
+          }
+        },
+        "operationId": "post_book_create",
+        "tags": [
+          "books"
+        ],
+        "summary": "Create new book"
+      }
+    },
+    "/api/books/{book_id}": {
+      "get": {
+        "tags": [
+          "books"
+        ],
+        "summary": "Find book by ID",
+        "responses": {
+          "200": {
+            "description": "Status OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/BookEdit"
+              }
+            }
+          },
+          "404": {
+            "description": "Page nor found"
+          }
+        },
+        "operationId": "get_book_list"
+      },
+      "patch": {
+        "tags": [
+          "books"
+        ],
+        "summary": "Replace partial information in the book",
+        "parameters": [
+          {
+            "name": "book_id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "Replace partial information in the book",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/BookEdit"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status OK"
+          },
+          "400": {
+            "description": "Invalid ID supplied"
+          },
+          "404": {
+            "description": "Book not found"
+          }
+        },
+        "operationId": "patch_book_edit"
+      },
+      "delete": {
+        "tags": [
+          "books"
+        ],
+        "summary": "Delete a book",
+        "parameters": [
+          {
+            "name": "book_id",
+            "in": "path",
+            "type": "integer",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status OK"
+          },
+          "400": {
+            "description": "Invalid book ID value"
+          }
+        },
+        "operationId": "delete_book"
+      },
+      "put": {
+        "tags": [
+          "books"
+        ],
+        "summary": "Update book by ID",
+        "parameters": [
+          {
+            "name": "book_id",
+            "in": "path",
+            "description": "Book that need to be replace",
+            "type": "integer",
+            "required": true
+          },
+          {
+            "in": "body",
+            "name": "Replace the full information in the book",
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/BookEdit"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Status OK"
+          },
+          "400": {
+            "description": "Book not found"
+          }
+        },
+        "operationId": "put_book_edit"
+      }
+    }
+  }
+}

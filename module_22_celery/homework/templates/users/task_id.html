@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ title}}</h1>
+    <hr>
+    <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID задачи</th>
+      <th scope="col">Кол-во задач</th>
+      <th scope="col">Выполнено</th>
+      <th scope="col">Статус</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{ status.group_id }}</td>
+      <td>{{ status.count_tasks }}</td>
+      <td>{{ status.completed }}%</td>
+      <td>{{ status.code.status }}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+{% endblock %}

@@ -83,8 +83,11 @@ def upload_csv_file():
 def get_aip_archive(result: celery.GroupResult) -> str:
     file_zip = 'images_blur.zip'
     with zipfile.ZipFile(file_zip, 'w') as _object:
-        for file in result:
-            _object.write(file.get(), compress_type = zipfile.ZIP_DEFLATED)
+        if result.children:
+            for file in result:
+                _object.write(file.get(), compress_type = zipfile.ZIP_DEFLATED)
+        else:
+            _object.write(result.get(), compress_type = zipfile.ZIP_DEFLATED)
     return file_zip
 
 
@@ -97,7 +100,6 @@ def blurry_images():
     form = FileForm()
     if form.validate_on_submit():
         new_list_img = [save_upload_file(image) for image in form.file.data]
-
         task_group = group(image_processing.s(_image) for _image in new_list_img)
         res = chain(task_group)
         chain_tasks = res.delay()

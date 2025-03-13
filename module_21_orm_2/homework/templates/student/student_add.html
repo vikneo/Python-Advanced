@@ -1,0 +1,33 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="form-style-10">
+            <h1>{{ title }}</h1>
+            {% for cat, msg in get_flashed_messages(True) %}
+                <div class="flash {{ cat }}">{{ msg }}</div>
+            {% endfor %}
+            <form method="post" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+                {% for field in form if field.name not in ['csrf_token', ] -%}
+                    <p>{{ field.label(class="form-label") }}
+                        {% if field.errors %}
+                            {{ field(class=invalid) }}
+                            <span>
+                        {% for e in field.errors %}
+                            {{ e }}
+                        {% endfor %}
+                    </span>
+                        {% endif %}
+                        {% if field.name == 'scholarship' %}
+                            {{ field(class="form-check-label") }}
+                        {% else %}
+                            {{ field(class="form-control") }}
+                        {% endif %}
+                    </p>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary">Добавить</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

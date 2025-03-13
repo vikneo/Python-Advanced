@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="flex align-txt-center nav-book between">
+            <div class="flex align-txt-center">
+                <p>Title book:</p>
+                <span>{{ book.title }}</span>
+            </div>
+            <div class="flex align-txt-center">
+                <p>Author:</p>
+                <span>{{ book.author }}</span>
+            </div>
+            <div class="flex align-txt-center">
+                <p>Views:</p>
+                <span>{{ book.views }}</span>
+            </div>
+        </div>
+        <div class="content">
+            <h4>Summary:</h4>
+            <p>
+                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum dignissimos, labore! Ad adipisci nobis quae quas unde. Corporis ea et ex facilis in laboriosam obcaecati quia, recusandae tempora totam voluptate.</span><span>Amet aspernatur dignissimos dolore, doloremque eveniet explicabo fugiat officiis quibusdam sapiente sint. Consequatur esse inventore labore libero nisi ut voluptatum. Animi consectetur cumque debitis dignissimos, odit reprehenderit temporibus? Dolor, placeat.</span><span>Aliquid amet asperiores beatae delectus deserunt dignissimos distinctio est eum excepturi fuga fugiat itaque laborum minima nisi numquam, perspiciatis placeat praesentium quasi quibusdam quo reiciendis reprehenderit repudiandae, sunt suscipit tempore.</span>
+            </p>
+        </div>
+    </div>
+
+{% endblock %}

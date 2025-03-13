@@ -1,0 +1,46 @@
+swagger: '2.0'
+basePath: /
+definitions:
+  Book:
+    properties:
+      author:
+        type: object
+      id:
+        readOnly: true
+        type: integer
+      title:
+        type: string
+    required:
+      - author
+      - title
+    type: object
+info:
+  title: BooksList
+  version: 1.0.0
+produces:
+  - application/json
+consumes:
+  - application/json
+tags:
+  - name: books
+paths:
+  /api/books:
+    post:
+      tags:
+        - books
+      summary: Create a new book
+      parameters:
+        - in: body
+          name: parameter new book
+          schema:
+            $ref: '#/definitions/Book'
+      responses:
+        '201':
+          description: Book create
+          schema:
+            $ref: '#/definitions/Book'
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+      operationId: post_book_list

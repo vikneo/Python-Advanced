@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="form-style-10">
+    <h1>{{ title }}<span>Feel the fields and and new books to the DB!</span></h1>
+    <form action="" method="post">
+        {{ csrf_token }}
+        <div class="section"><span>1</span>Book title</div>
+        <div class="inner-wrap">
+            <label>Book title<input type="text" name="title"/></label>
+            {%  if form.title.errors %}
+                {%  for e in form.title.errors %}
+                    <span class="invalid">{{ e }}</span>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="section"><span>2</span>Author full name</div>
+        <div class="inner-wrap">
+            <label>Author full name<input type="text" name="author"/></label>
+            {%  if form.author.errors %}
+                {%  for e in form.author.errors %}
+                    <span class="invalid">{{ e }}</span>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="flex button-section between">
+            <button type="submit">Add new book</button>
+            <a class="button" href="{{ url_for('all_books') }}">Main page</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

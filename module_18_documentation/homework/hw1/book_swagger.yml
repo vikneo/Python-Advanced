@@ -1,0 +1,133 @@
+swagger: '2.0'
+basePath: /
+definitions:
+  BookEdit:
+    properties:
+      author:
+        type: object
+      id:
+        readOnly: true
+        type: integer
+      title:
+        type: string
+    required:
+      - author
+      - title
+    type: object
+info:
+  title: BooksList
+  version: 1.0.0
+produces:
+  - application/json
+consumes:
+  - application/json
+tags:
+  - name: books
+paths:
+  /api/books:
+    post:
+      tags:
+        - books
+      summary: Create a new book
+      parameters:
+        - in: body
+          name: parameter new book
+          schema:
+            $ref: '#/definitions/BookEdit'
+      responses:
+        '201':
+          description: Book create
+          schema:
+            $ref: '#/definitions/BookEdit'
+        '400':
+          description: Invalid input
+        '422':
+          description: Validation exception
+      operationId: post_book_list
+    get:
+      tags:
+        - books
+      summary: Get full list books
+      responses:
+        '200':
+          description: Status OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/BookEdit'
+        '404':
+          description: Page not found
+      operationId: get_book_list
+  /api/books/{book_id}:
+    patch:
+      summary: Replace partial information in the book
+      parameters:
+        - name: book_id
+          in: path
+          type: integer
+          required: true
+        - in: body
+          name: Replace partial information in the book
+          schema:
+            items:
+              $ref: '#/definitions/BookEdit'
+      responses:
+        '200':
+          description: Status OK
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Book not found
+      operationId: patch_book_edit
+    delete:
+      summary: Delete a book
+      parameters:
+        - name: book_id
+          in: path
+          type: integer
+          required: true
+      responses:
+        '200':
+          description: Status OK
+          schema:
+            items:
+              $ref: '#/definitions/BookEdit'
+        '400':
+          description: Invalid book value
+      operationId: delete_book_edit
+    get:
+      summary: Find book by ID
+      parameters:
+        - name: book_id
+          in: path
+          description: ID of book to return
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: Status OK
+          schema:
+            items:
+              $ref: '#/definitions/BookEdit'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Book not found
+      operationId: get_book_edit
+    put:
+      summary: Update book by ID
+      parameters:
+        - name: book_id
+          in: path
+          description: book that need to be replace
+          required: true
+          type: integer
+        - in: body
+          name: replace the full information in the book
+          schema:
+            items:
+              $ref: '#/definitions/BookEdit'
+      responses:
+        '200':
+          description: Status OK
+      operationId: put_book_edit

@@ -1,0 +1,28 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1>{{ title }}</h1>
+        <div class="card">
+            <div class="card-header flex" style="justify-content: space-between">
+                {% if student %}
+                <div>Студент:
+                    <string class="name-head">{{ student.students.surname }} {{ student.students.name }}</string>
+                </div>
+            </div>
+            <div class="card-body">
+                <span style="padding-right: 10px;">Читал(а) книги:</span>
+                {% for book in receivings %}
+                <strong style="padding-right: 5px;">{{ book.title }},</strong>
+                {% endfor %}
+            </div>
+            <div class="card-body">
+                <span style="padding-right: 10px;">Рекомендации к прочтению:</span>
+                {% for r_book in recomend %}
+                <strong style="padding-right: 5px;">{{ r_book.title }},</strong>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

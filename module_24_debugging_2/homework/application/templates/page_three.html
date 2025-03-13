@@ -1,0 +1,10 @@
+{% extends 'base/base.html' %}
+
+
+{% block image_door_3 %}
+{% if status_code == 200 %}
+<img src="{{ url_for('static', filename='img/open_door.PNG') }}" height="430px" class="card-img-top" alt="Дверь открыта">
+{% else %}
+<img src="{{ url_for('static', filename='img/not_enter.PNG') }}" height="430px" class="card-img-top" alt="Споткнулся">
+{% endif %}
+{% endblock %}

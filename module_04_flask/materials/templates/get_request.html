@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Get request</title>
+</head>
+<body>
+    <h1>Get request</h1>
+    <p>Search for {{ searches.cell_tower_ids }} cell towers. Search criteria: </p>
+    <div style="padding-left: 50px">
+        <p>phone_prefixes={{ searches.phone_prefixes }}, </p>
+        <p>protocols={{ searches.protocols }}, </p>
+        <p>signal_level={{ searches.signal_level }}</p>
+        <p>date_from={{ searches.date_from }}</p>
+        <p>date_to={{ searches.date_to }}</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <div class="container">
+        <form class="d-flex" name="search" method="get">
+            <input class="form-control me-2" type="search" name="search" placeholder="Поиск книги по имени"
+                   aria-label="Поиск">
+            <button class="btn btn-outline-success" type="submit">Поиск</button>
+        </form>
+        {% if books %}
+            <h1>Результат поиска</h1>
+            {% for book in books %}
+                <div class="card">
+                    <div class="card-header flex" style="justify-content: space-between">
+                        <div>Название:
+                            <string class="name-head">{{ book.name }}</string>
+                        </div>
+                        <div>Год издания:
+                            <string class="name-head">{{ book.release_date.strftime('%Y') }} г.</string>
+                        </div>
+                        <div>Количество:
+                            <string class="name-head">{{ book.count }}</string>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Автор: {{ book.author_id }}</h5>
+                        <p class="card-text">С вспомогательным текстом ниже в качестве естественного перехода к
+                            дополнительному контенту.</p>
+                        <a href="{{ url_for('get_book_by_id', book_id=book.id) }}" class="btn btn-primary">Подробнее
+                            >></a>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

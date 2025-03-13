@@ -1,0 +1,41 @@
+swagger: '2.0'
+basePath: /
+definitions:
+  Book:
+    properties:
+      author:
+        type: object
+      id:
+        readOnly: true
+        type: integer
+      title:
+        type: string
+    required:
+      - author
+      - title
+    type: object
+info:
+  title: BooksList
+  version: 1.0.0
+produces:
+  - application/json
+consumes:
+  - application/json
+tags:
+  - name: books
+paths:
+  /api/books:
+    get:
+      tags:
+        - books
+      summary: Get full list books
+      responses:
+        '200':
+          description: Status OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Book'
+        '404':
+          description: Page not found
+      operationId: get_book_list
